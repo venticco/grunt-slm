@@ -14,10 +14,11 @@ module.exports = function(grunt) {
       if (!f.src.length) {
         return grunt.fail.warn('No source files were found.');
       }
-      
+
       f.src.forEach(function(filepath) {
         var src = grunt.file.read(filepath);
-        var html = compile(src)();
+        options.filename = filepath;
+        var html = compile(src, options)();
         var dest, filename;
 
         if (f.dest.charAt(f.dest.length - 1) === '/') {
